@@ -26,7 +26,7 @@ User.find({
                         users.setCurrentJoke(val.username, joke._id).catch(err => console.log(err)) //to push the daily joke onto users' seen jokes
 
 
-                        sendMessage(genJokeRequest(val, joke))
+                        sendMessage(genJokeRequest(val, joke)).then(body => db.close())
                             .catch(err => console.log(err))
                     } else {
                         console.log(`The joke limit is exceeded for user:\n\t ${val.username}`)
@@ -72,9 +72,3 @@ function sendMessage (requestObj){ //normal text
         })
     })
 } 
-
-
-process.on('beforeExit', (err) => {
-    if(err) console.log("Exited with Error")
-    db.close() //this should close the db connection if an error hadn't already
-})
