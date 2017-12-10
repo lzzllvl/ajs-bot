@@ -19,8 +19,7 @@ module.exports = {
                 })
         },
     getCurrentPunchline: (username) => {
-        return new Promise((resolve, reject) => {
-            User.findOne({
+        return User.findOne({
                 username: username
             })
             .then(user => {
@@ -38,7 +37,6 @@ module.exports = {
                     })
                 }).catch(err => reject(err))
             }).catch(err => reject(err))
-        })
     },
     getNextJoke: (username) => {
         return new Promise((resolve, reject) => {
