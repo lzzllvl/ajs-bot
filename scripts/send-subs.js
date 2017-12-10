@@ -28,7 +28,10 @@ User.find({
     })
 }).then(result => {
     db.close()
-}).catch(err => console.error(err))
+}).catch(err => {
+    db.close()
+    console.error(err)
+})
 
 function genJoke(user, jokeRecord) {
     return {
