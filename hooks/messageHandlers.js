@@ -53,7 +53,7 @@ const textReplies = {
         replies.sendNoResponse(message)
     },
     startChat: (message) => {
-        users.createNewUser({username:message.from})
+        users.createNewUser(message.from, message.chatId)
             .then(result => {
                 replies.sendGreeting(message)
             })

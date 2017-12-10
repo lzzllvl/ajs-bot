@@ -2,9 +2,10 @@ const User = require('../models/User')
 const Joke = require('../models/Joke')
 
 module.exports = {
-    createNewUser: (username) => {
+    createNewUser: (username, chatId) => {
         return User.create({
-            username: username
+            username: username,
+            chatId: chatId
         })
     },
     setCurrentJoke: (username, jokeId) => {

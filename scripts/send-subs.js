@@ -18,8 +18,45 @@ db.once("open", function() {
 User.find({
     isSubscribed: true
 }).then((data) => {
-    console.log(data);
-    //data.forEach()
+    data.forEach(val => {
+        users.getNextJoke(val.username)
+            .then(joke => {
+                sendMessage(genJoke(val, joke))
+                .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+    })
 }).then(result => {
     db.close()
 }).catch(err => console.error(err))
+
+function genJoke(user, jokeRecord) {
+    return {
+        url: "https://api.kik.com/v1/message",
+        auth: {
+            user: "amazon.joke.services",
+            pass: process.env.API_KEY 
+        },
+        json: {
+            "messages": [{
+                "chatId": user.chatId,
+                "to": user.username,
+                "body": jokeRecord.body.setup,
+                "type": "text"
+            },{
+                "chatId": chatId,
+                "to": user.username,
+                "body": jokeRecord.body.punchline,
+                "type": "text",
+                "delay": 5000
+            }]
+        }
+    }
+}
+function sendMessage (requestObj){ //normal text
+    return new Promise((resolve, reject) => {
+        request.post(requestObj, (err, result, body) => {
+            err ? reject(err) : resolve(body)
+        })
+    })
+} 

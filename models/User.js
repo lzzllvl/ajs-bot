@@ -7,6 +7,11 @@ const userSchema = new Schema({
         required: true,
         unique: true //should be by default from kik
     },
+    chatId: {
+        type: String,
+        required: true,
+        unique: true
+    },
     isSubscribed: {
         type: Schema.Types.Boolean,
         default: false

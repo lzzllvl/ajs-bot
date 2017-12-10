@@ -7,7 +7,7 @@ function buildRequest(json){
         url: "https://api.kik.com/v1/message",
         auth: {
             user: "amazon.joke.services",
-            pass: process.env.API_KEY // move to env
+            pass: process.env.API_KEY 
         },
         json: json
     }
