@@ -30,12 +30,10 @@ User.find({
                             .catch(err => console.log(err))
                     } else {
                         console.log(`The joke limit is exceeded for user:\n\t ${val.username}`)
-                        
                     }
                 })
         })
     )
-    .then(result => db.close())
     .catch(err => {
         db.close()
         console.log("error:", err)
@@ -74,3 +72,9 @@ function sendMessage (requestObj){ //normal text
         })
     })
 } 
+
+
+process.on('beforeExit', (err) => {
+    if(err) console.log("Exited with Error")
+    db.close() //this should close the db connection if an error hadn't already
+})
