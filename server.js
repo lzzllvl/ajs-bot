@@ -7,14 +7,14 @@ const express = require('express'),
 
 
 mongoose.Promise = Promise
-const db = mongoose.connect(dbhost);
+mongoose.connect(dbhost);
 var db = mongoose.connection;
-      db.on("error", function(error) {
-            console.log("Mongoose Error: ", error);
-      })
-      db.once("open", function() {
-            console.log("Mongoose connection successful.");
-      })
+db.on("error", function(error) {
+      console.log("Mongoose Error: ", error);
+})
+db.once("open", function() {
+      console.log("Mongoose connection successful.");
+})
 
 
 const app = express().use(bodyParser.json())
