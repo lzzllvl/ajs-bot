@@ -21,8 +21,9 @@ User.find({
     data.forEach(val => {
         users.getNextJoke(val.username)
             .then(joke => {
-                sendMessage(genJoke(val, joke)).then(result => db.close())
-                .catch(err => console.log(err))
+                sendMessage(genJoke(val, joke))
+                    .then(result => db.close())
+                    .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
     })
@@ -32,7 +33,6 @@ User.find({
 })
 
 function genJoke(user, jokeRecord) {
-    console.log(user)
     return {
         url: "https://api.kik.com/v1/message",
         auth: {

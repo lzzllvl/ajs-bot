@@ -8,7 +8,8 @@
     "test": "mocha",
     "joke-cli": "node scripts/joke-cli.js",
     "send-subs": "node scripts/send-subs.js",
-    "conf": "node scripts/kik-conf.js"
+    "conf": "node scripts/kik-conf.js",
+    "daily-count-reset": "node scripts/reset-joke-count"
   },
   "author": "Gregory Lee",
   "license": "ISC",
