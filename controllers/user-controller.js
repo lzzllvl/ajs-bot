@@ -57,7 +57,8 @@ module.exports = {
                             $nin: data.jokesSeen
                         }
                     })
-                    .then(record =>{
+                    .then(record => {
+                        console.log(record)
                         if(record.length) {
                             resolve(record)
                         } else {
@@ -68,7 +69,8 @@ module.exports = {
                                 $set: {
                                     jokesSeen: []
                                 }
-                            }).catch(err => reject(err))
+                            }).then(resu => (console.log(resu)))
+                            .catch(err => reject(err))
                         }
                     })
                     .catch(err => reject(err))
