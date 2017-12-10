@@ -58,8 +58,7 @@ module.exports = {
                         }
                     })
                     .then(record => {
-                        console.log(record)
-                        if(record.length) {
+                        if(record) {
                             resolve(record)
                         } else {
                             //seen all the joke so far so cycle
