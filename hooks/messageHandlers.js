@@ -18,7 +18,7 @@ const textReplies = {
                             console.log("lovat me ", message.from, result)
                             users.getCurrentPunchline(message.from)
                             .then((jokeRecord) => {
-                                console.log("jokerecord")
+                                console.log("jokerecord", jokeRecord)
                                 replies.sendPunchline(message, jokeRecord)                      
                             }).catch(err => console.log(err))
                         }).catch(err => console.log(err))
