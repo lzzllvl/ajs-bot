@@ -10,11 +10,12 @@ const textReplies = {
                 if(result.noJokeMessage){
                     replies.sendJokeLimit(message)
                 } else {
+                    console.log("got the joke: ", result)
                 users.setCurrentJoke(message.from, result._id)
                     .then(jokeRecord => {
                         replies.sendSetup(message, result)
                         .then(body => {
-                            console.log(message.from, result )
+                            console.log(message.from, result)
                             users.getCurrentPunchline(message.from)
                             .then((jokeRecord) => {
                                 replies.sendPunchline(message, jokeRecord)                      
