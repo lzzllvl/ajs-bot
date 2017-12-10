@@ -10,22 +10,14 @@ module.exports = {
     },
     setCurrentJoke: (username, jokeId) => {
         //both of these need to happen before we can move on
-        return new Promise((resolve, reject) => 
-            Promise.all([
-                //event 1
-                User.findOneAndUpdate({
+        return  User.findOneAndUpdate({
                     username: username
                 }, {
                     $set: {
                         "currentJoke": jokeId
                     }
-                }),
-                //event a
-               
-            ])
-            .then(([thingOne, thingTwo]) => resolve(thingOne))
-            .catch(err => reject(err))
-        )},
+                })
+        },
     getCurrentPunchline: (username) => {
         return new Promise((resolve, reject) => {
             User.findOne({
