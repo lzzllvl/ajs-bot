@@ -54,7 +54,7 @@ function genJokeRequest(user, jokeRecord) {
                 "to": user.username,
                 "body": jokeRecord.body.setup,
                 "type": "text"
-            },{
+            }, {
                 "chatId": user.chatId,
                 "to": user.username,
                 "body": jokeRecord.body.punchline,
@@ -78,12 +78,13 @@ function genJokeRequest(user, jokeRecord) {
                             "metadata": {
                                 "jokeId": joke._id
                             }
-                        }
-                    ]
-            }]
+                        }]
+                    }]
+                }]
+            }
         }
     }
-}
+
 
 function sendMessage (requestObj){ //normal text
     return new Promise((resolve, reject) => {
