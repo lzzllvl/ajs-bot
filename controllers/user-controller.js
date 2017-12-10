@@ -41,7 +41,7 @@ module.exports = {
     getNextJoke: (username) => {
         console.log("right function called")
         return new Promise((resolve, reject) => {
-            User.find().then(data => console.log(data))
+            User.find({}).exec().then(data => console.log(data))
             User.findOne({
                 username: username
             }).then((data) => {

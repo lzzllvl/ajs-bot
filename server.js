@@ -3,7 +3,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose'),
       PORT = process.env.PORT || 4433,      
-      DB_HOST = process.env.MONGODB_URI //|| "mongodb://localhost/chat-bot"
+      DB_HOST = process.env.MONGODB_URI || "mongodb://localhost/chat-bot"
       Promise = require('bluebird')
 
 
