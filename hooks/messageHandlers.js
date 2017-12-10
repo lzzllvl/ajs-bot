@@ -14,6 +14,7 @@ const textReplies = {
                     .then(jokeRecord => {
                         replies.sendSetup(message, result)
                         .then(body => {
+                            console.log(message.from, result )
                             users.getCurrentPunchline(message.from)
                             .then((jokeRecord) => {
                                 replies.sendPunchline(message, jokeRecord)                      
