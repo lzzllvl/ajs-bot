@@ -22,44 +22,48 @@ User.find({
         data.map(val => {
             return users.getNextJoke(val.username)
                 .then(joke => {
-                    sendMessage(genJoke(val, joke))
-                        .then(result => db.close())
-                        .catch(err => console.log(err))
+                    if(!joke.noJokeMessage) {
+                        sendMessage(genJoke(val, joke))
+                            .then(result => db.close())
+                            .catch(err => console.log(err))
+                    } else {
+                        throw new Error("The joke limit is exceeded")
+                    }
                 })
         })
     )
     .then(result => db.close())
     .catch(err => {
-            db.close()
-            console.error(err)
-        })
+        db.close()
+        console.error(err)
+    })
 })
 
 function genJoke(user, jokeRecord) {
-    if(!jokeRecord.noJokeMessage) {
-        return {
-            url: "https://api.kik.com/v1/message",
-            auth: {
-                user: "amazon.joke.services",
-                pass: process.env.API_KEY 
-            },
-            json: {
-                "messages": [{
-                    "chatId": user.chatId,
-                    "to": user.username,
-                    "body": jokeRecord.body.setup,
-                    "type": "text"
-                },{
-                    "chatId": user.chatId,
-                    "to": user.username,
-                    "body": jokeRecord.body.punchline,
-                    "type": "text",
-                    "delay": 5000
-                }]
-            }
+
+    return {
+        url: "https://api.kik.com/v1/message",
+        auth: {
+            user: "amazon.joke.services",
+            pass: process.env.API_KEY 
+        },
+        json: {
+            "messages": [{
+                "chatId": user.chatId,
+                "to": user.username,
+                "body": jokeRecord.body.setup,
+                "type": "text"
+            },{
+                "chatId": user.chatId,
+                "to": user.username,
+                "body": jokeRecord.body.punchline,
+                "type": "text",
+                "delay": 5000
+            }]
         }
     }
 }
+
 function sendMessage (requestObj){ //normal text
     return new Promise((resolve, reject) => {
         request.post(requestObj, (err, result, body) => {
