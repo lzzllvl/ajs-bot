@@ -14,9 +14,6 @@ module.exports = {
         }, {
             $set: {
                 currentJoke: jokeId
-            },
-            $inc: {
-                jokesToday: 1
             }
         })
     },
@@ -34,6 +31,9 @@ module.exports = {
                     }, {
                         $push: {
                             jokesSeen: data._id
+                        },
+                        $inc: {
+                            jokesToday: 1
                         }
                     }).exec((err, res) => {
                         err ? reject(err): resolve(data)
