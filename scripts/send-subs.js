@@ -27,7 +27,7 @@ User.find({
                             .then(result => db.close())
                             .catch(err => console.log(err))
                     } else {
-                        throw new Error("The joke limit is exceeded")
+                        console.log(`The joke limit is exceeded for user:\n\t ${val.username}`)
                     }
                 })
         })
