@@ -47,6 +47,7 @@ function buildSetupJson(toUser, chatId, body){
     }
 }
 function buildPunchJson(toUser, chatId, joke){
+    console.log(joke)
     return { 
         "messages": [{
             "chatId": chatId,
