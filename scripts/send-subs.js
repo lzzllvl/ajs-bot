@@ -61,7 +61,7 @@ function genJokeRequest(user, jokeRecord) {
                 "type": "text",
                 "delay": 5000,
                 "keyboards": [{
-                    "to": toUser,
+                    "to": user.username,
                     "hidden": false,
                     "type": "suggested",
                     "responses": [
@@ -69,14 +69,14 @@ function genJokeRequest(user, jokeRecord) {
                             "type": "text",
                             "body": "HA! :D",
                             "metadata": {
-                                "jokeId": joke._id
+                                "jokeId": jokeRecord._id
                             }
                         },
                         {
                             "type": "text",
                             "body": "Meh :|",
                             "metadata": {
-                                "jokeId": joke._id
+                                "jokeId": jokeRecord._id
                             }
                         }]
                     }]
