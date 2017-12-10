@@ -1,5 +1,5 @@
-const textReplies = require('../utils/textReplies')
-const translator = require('./utils/translator') // a little flexibility with user responses
+const textReplies = require('./textReplies')
+const translator = require('./translator') // a little flexibility with user responses
 
 module.exports = function(message) {
     let replyFunc;
