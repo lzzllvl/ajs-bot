@@ -50,7 +50,7 @@ module.exports = {
                 })
             .then((data) => {
                 if(data.jokesToday > 4) { 
-                    resolve({ noJokeMessage: true }) 
+                    resolve({ noJokeMessage: true })
                 } else {
                     Joke.findOne({
                         _id: {
@@ -61,14 +61,16 @@ module.exports = {
                         if(record) {
                             resolve(record)
                         } else {
-                            //seen all the joke so far so cycle
+                            //seen all the joke so far so reset
+                            
                             User.findOneAndUpdate({
                                 username: username
                             }, {
                                 $set: {
                                     jokesSeen: []
                                 }
-                            }).then(res => resolve())
+                            })
+                            .then(res => resolve({ noJokeMessage: false }))
                             .catch(err => reject(err))
                         }
                     })
