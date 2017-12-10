@@ -49,7 +49,7 @@ function genJoke(user, jokeRecord) {
                 "body": jokeRecord.body.setup,
                 "type": "text"
             },{
-                "chatId": chatId,
+                "chatId": user.chatId,
                 "to": user.username,
                 "body": jokeRecord.body.punchline,
                 "type": "text",
