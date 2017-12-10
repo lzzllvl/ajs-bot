@@ -1,0 +1,27 @@
+{
+  "name": "kik_chatbot",
+  "version": "0.1.0",
+  "description": "Kik Joker Bot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha",
+    "joke-cli": "node scripts/joke-cli.js",
+    "sendSubs": "node scripts/sendSubs",
+    "conf": "node scripts/kik-conf.js"
+  },
+  "author": "Gregory Lee",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "inquirer": "^4.0.1",
+    "mongoose": "^4.13.6",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "sinon": "^4.1.3"
+  }
+}

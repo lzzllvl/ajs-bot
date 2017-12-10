@@ -1,0 +1,47 @@
+
+{
+    "data": [
+        {
+            "body": {
+                "setup": "You know, if you put 1M monkeys in front of 1M computers, eventually one of them will write a functional node.js script.",
+                "punchline": "The rest will write Perl scripts."
+            }
+        }, {
+            "body": {
+                "setup": "How many programmers does it take to screw in a lightbulb?",
+                "punchline": "Sounds like a hardware problem."
+            }
+        }, {
+            "body": {
+                "setup": "What do you call it when you have to roll back to a previous release of your Single-Page App?",
+                "punchline": "Hot Tub Time Machine"
+            }
+        }, {
+            "body": {
+                "setup": "Why do programmers always fare so poorly when they are near an open flame?",
+                "punchline": "Their first instinct is to halt and catch fire."
+            }
+        }, {
+            "body": {
+                "setup": "My roommate always keeps the breakfast potatoes locked up in the outdoor freezer.",
+                "punchline": "He says it's a secure hash"
+            }
+        }, {
+            "body": {
+                "setup": "Apparently my system administrator thinks he's a player...",
+                "punchline": "He's always sliding into my VM's"
+            }
+        }, {
+            "body": {
+                "setup": "I once had a Bot companion, but they dumped me with nothing but a deprecation warning...",
+                "punchline": "It was a heart breaking change."
+            }
+        }, {
+            "body": {
+                "setup": "What does an average developer have in common with Dwayne 'The Rock' Johnson?",
+                "punchline": "Nothing. Literally not a single thing."
+            }
+        }
+    ]
+}
+
