@@ -50,33 +50,26 @@ module.exports = {
     },
     getNextJoke: (username) => {
         return new Promise((resolve, reject) => {
-            //all of this needs to happen
-            Promise.all([
-                //event a
-                User.findOneAndUpdate({
+            User.findOneAndUpdate({
                     username: username 
                 }, {
                     $inc: {
                         "jokesToday": 1
                     }
-                }),         
-                //event 1
-                User.findOne({
-                    username: username
-                }).then((data) => {
-                    if(data.jokesToday >= 3) { //4 jokes a day
-                        resolve({ noJokeMessage: true })
-                    } else {
-                        Joke.findOne({
-                            _id: {
-                                $nin: data.jokesSeen
-                            }
-                        })
-                        
-                    }
                 })
-            ])   
-            .then(([recordA, record1]) => resolve(record1))//but I only want 1
+            .then((data) => {
+                if(data.jokesToday >= 3) { //4 jokes a day
+                    resolve({ noJokeMessage: true })
+                } else {
+                    Joke.findOne({
+                        _id: {
+                            $nin: data.jokesSeen
+                        }
+                    })
+                    .then(record => resolve(record))
+                    .catch(err => console.log(err))
+                }
+            }) 
             .catch(err => reject(err))
         })
     },
