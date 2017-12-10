@@ -22,7 +22,7 @@ function buildFirstJson(toUser, chatId){
             }, {
                 "chatId": chatId,
                 "to": toUser,
-                "body": "I'm Amazon Joke Services, but you can call me AJ. Or whatever you want, I won't know the difference, because I'm a bot. Basically, I tell jokes. That's about it.",
+                "body": "I'm Amazon Joke Services, but you can call me AJ. Or whatever you want, I won't know the difference, because I'm a Bot. Basically, I tell jokes. That's about it.",
                 "type": "text",
                 "delay": 1000
             }, {
@@ -123,11 +123,22 @@ function buildNoResponseJson(toUser, chatId){
         "messages": [{
             "chatId": chatId,
             "to": toUser,
-            "body": "I'm sorry, I didn't understand that - my first language is binary",
+            "body": "I'm sorry, I didn't understand that - my first language is binary. I don't speak `SESSION_CONFIG.user_lang`",
             "type": "text"
         }]
     }
 }
+function buildJokeLimitJson(toUser, chatId){
+    return {
+        "messages": [{
+            "chatId": chatId,
+            "to": toUser,
+            "body": "I'm not a your personal joke machine! ... Well, I guess I am. Regardless, you've reached your daily limit, so you'll have to 'subscribe' or text me tomorrow for some more object-oriented hilarity.",
+            "type": "text"
+        }]
+    }
+}
+
 function sendMessage (requestObj){ //normal text
     return new Promise((resolve, reject) => {
         request.post(requestObj, (err, result, body) => {
@@ -135,6 +146,8 @@ function sendMessage (requestObj){ //normal text
         })
     })
 } 
+
+
 
 
 module.exports = {
@@ -161,5 +174,8 @@ module.exports = {
     },
     sendNoResponse(message) {
         return sendMessage(buildRequest(buildNoResponseJson(message.from, message.chatId)))
+    }, 
+    sendJokeLimit(message) {
+        return sendMessage(buildRequest(buildJokeLimitJson(message.from, message.chatId)))
     }
 }

@@ -13,6 +13,9 @@ module.exports = {
         }, {
             $set: {
                 currentJoke: jokeId
+            },
+            $inc: {
+                jokesToday: 1
             }
         })
     },
@@ -43,13 +46,18 @@ module.exports = {
             User.findOne({
                 username: username
             }).then((data) => {
-                Joke.findOne({
-                    _id: {
-                        $nin: data.jokesSeen
-                    }
-                })
-                .then(record => resolve(record))
-                .catch(err => reject(err))
+                if(data.jokesToday >= 3) { //4 jokes a day
+                    resolve({ noJokeMessage: true})
+                } else {
+                    Joke.findOne({
+                        _id: {
+                            $nin: data.jokesSeen
+                        }
+                    })
+                    .then(record => resolve(record))
+                    .catch(err => reject(err))
+                    
+                }
             })
             .catch(err => {reject(err)})
         })   

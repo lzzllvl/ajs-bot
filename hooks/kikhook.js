@@ -8,9 +8,6 @@ module.exports = (hookRouter) => {
     hookRouter.post('/', (req, res) => {
         res.sendStatus(200) 
         let message = req.body.messages[0]
-        
-        
-        handlers(message)
-       
+        handlers(message)    
     })
 }
