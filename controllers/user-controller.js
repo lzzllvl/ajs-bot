@@ -17,7 +17,7 @@ module.exports = {
                     username: username
                 }, {
                     $set: {
-                        currentJoke: jokeId
+                        "currentJoke": jokeId
                     }
                 }),
                 //event a
@@ -25,7 +25,7 @@ module.exports = {
                     username: username 
                 }, {
                     $inc: {
-                        jokesToday: 1
+                        "jokesToday": 1
                     }
                 })
             ])
