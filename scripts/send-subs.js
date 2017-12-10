@@ -18,41 +18,45 @@ db.once("open", function() {
 User.find({
     isSubscribed: true
 }).then((data) => {
-    data.forEach(val => {
-        users.getNextJoke(val.username)
-            .then(joke => {
-                sendMessage(genJoke(val, joke))
-                    .then(result => db.close())
-                    .catch(err => console.log(err))
-            })
-            .catch(err => console.log(err))
-    })
-}).catch(err => {
-    db.close()
-    console.error(err)
+    Promise.all(
+        data.map(val => {
+            return users.getNextJoke(val.username)
+                .then(joke => {
+                    sendMessage(genJoke(val, joke))
+                        .then(result => db.close())
+                        .catch(err => console.log(err))
+                })
+        })
+    )
+    .then(result => db.close())
+    .catch(err => {
+            db.close()
+            console.error(err)
+        })
 })
 
 function genJoke(user, jokeRecord) {
-    console.log(jokeRecord)
-    return {
-        url: "https://api.kik.com/v1/message",
-        auth: {
-            user: "amazon.joke.services",
-            pass: process.env.API_KEY 
-        },
-        json: {
-            "messages": [{
-                "chatId": user.chatId,
-                "to": user.username,
-                "body": jokeRecord.body.setup,
-                "type": "text"
-            },{
-                "chatId": user.chatId,
-                "to": user.username,
-                "body": jokeRecord.body.punchline,
-                "type": "text",
-                "delay": 5000
-            }]
+    if(!jokeRecord.noJokeMessage) {
+        return {
+            url: "https://api.kik.com/v1/message",
+            auth: {
+                user: "amazon.joke.services",
+                pass: process.env.API_KEY 
+            },
+            json: {
+                "messages": [{
+                    "chatId": user.chatId,
+                    "to": user.username,
+                    "body": jokeRecord.body.setup,
+                    "type": "text"
+                },{
+                    "chatId": user.chatId,
+                    "to": user.username,
+                    "body": jokeRecord.body.punchline,
+                    "type": "text",
+                    "delay": 5000
+                }]
+            }
         }
     }
 }
