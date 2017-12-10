@@ -68,7 +68,7 @@ module.exports = {
                                 $set: {
                                     jokesSeen: []
                                 }
-                            })
+                            }).then(res => resolve())
                             .catch(err => reject(err))
                         }
                     })
