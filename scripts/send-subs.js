@@ -35,6 +35,7 @@ User.find({
 })
 
 function genJoke(user, jokeRecord) {
+    console.log(user)
     return {
         url: "https://api.kik.com/v1/message",
         auth: {
