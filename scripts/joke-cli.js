@@ -117,8 +117,13 @@ function addUser() {
             type: 'input',
             message: "please enter the username",
             "name": "username"
-        }]).then(answers => {
-            users.createNewUser(answers.username)
+        },{
+            type: 'input',
+            message: "Paste in the chatId",
+            "name": "chatId"
+        }
+    ]).then(answers => {
+            users.createNewUser(answers.username, answers.chatId)
                 .then(data => {
                     console.log(data)
                     db.close()
