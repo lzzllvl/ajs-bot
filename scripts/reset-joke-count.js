@@ -15,15 +15,18 @@ db.once("open", function() {
 })
 
 User.find({}).then(set => {
-    set.forEach(val => {
-        User.findOneAndUpdate({
-            chatId: val.chatId
-        },{
-            $set: {
-                jokesToday: 0
-            }
-        }).catch(err => console.log(err))
-    })
+    Promise.all(
+        set.map(val => {
+            return User.findOneAndUpdate({
+                chatId: val.chatId
+            },{
+                $set: {
+                    jokesToday: 0
+                }
+            })
+        })
+    )
+    .catch(err => console.log(err))
 })
-.then(result => { db.close() ; console.log("Daily joke counts reset")})
+.then(result => console.log("Daily joke counts reset"))
 .catch(err => { db.close() ; console.log(err) })
