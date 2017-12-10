@@ -39,13 +39,10 @@ module.exports = {
         })
     },
     getNextJoke: (username) => {
-        console.log("right function called")
-        return new Promise((resolve, reject) => {
-            User.find({}).exec().then(data => console.log(data))
+        return new Promise((resolve, reject) => {         
             User.findOne({
                 username: username
             }).then((data) => {
-                console.log("data", data)
                 Joke.findOne({
                     _id: {
                         $nin: data.jokesSeen

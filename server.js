@@ -8,11 +8,11 @@ const express = require('express'),
 
 
 mongoose.Promise = Promise
-mongoose.createConnection(DB_HOST, { useMongoClient: true})
-      .on("error", function(error) {
+const db = mongoose.createConnection(DB_HOST, { useMongoClient: true})
+      db.on("error", function(error) {
             console.log("Mongoose Error: ", error);
       })
-      .once("open", function() {
+      db.once("open", function() {
             console.log("Mongoose connection successful.");
       })
 
