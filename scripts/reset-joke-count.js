@@ -25,7 +25,7 @@ User.find({}).then(set => {
                 }
             })
         })
-    )
+    ).then(val => db.close())
     .catch(err => console.log(err))
 })
 .then(result => console.log("Daily joke counts reset"))
