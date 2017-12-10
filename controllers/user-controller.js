@@ -57,8 +57,21 @@ module.exports = {
                             $nin: data.jokesSeen
                         }
                     })
-                    .then(record => resolve(record))
-                    .catch(err => console.log(err))
+                    .then(record =>{
+                        if(record.length) {
+                            resolve(record)
+                        } else {
+                            //seen all the joke so far so cycle
+                            User.findOneAndUpdate({
+                                username: username
+                            }, {
+                                $set: {
+                                    jokesSeen: []
+                                }
+                            }).catch(err => reject(err))
+                        }
+                    })
+                    .catch(err => reject(err))
                 }
             }) 
             .catch(err => reject(err))
