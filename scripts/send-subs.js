@@ -5,7 +5,10 @@ const replies = require('../controllers/reply-controller')
 const dbhost = process.env.MONGODB_URI || "mongodb://localhost/chatbot"
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
-mongoose.connect(dbhost);
+mongoose.connect(dbhost, {
+    server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+    replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
+  });
 var db = mongoose.connection;
 db.on("error", function(error) {
     console.log("Mongoose Error: ", error);
