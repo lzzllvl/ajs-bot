@@ -22,6 +22,7 @@ User.find({
         data.map(val => {
             return users.getNextJoke(val.username)
                 .then(joke => {
+                    console.log(joke)
                     if(!joke.noJokeMessage) {
                         sendMessage(genJoke(val, joke))
                             .catch(err => console.log(err))
