@@ -20,4 +20,6 @@ User.find({
 }).then((data) => {
     console.log(data);
     //data.forEach()
+}).then(result => {
+    db.close()
 }).catch(err => console.error(err))
