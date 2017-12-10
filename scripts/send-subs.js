@@ -1,17 +1,14 @@
 const User = require('../models/User')
 const users = require('../controllers/user-controller')
 const replies = require('../controllers/reply-controller')
-
+const request = require('request')
 const dbhost = process.env.MONGODB_URI || "mongodb://localhost/chatbot"
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
-mongoose.connect(dbhost, {
-    server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
-    replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
-  });
-var db = mongoose.connection;
+mongoose.connect(dbhost)
+var db = mongoose.connection
 db.on("error", function(error) {
-    console.log("Mongoose Error: ", error);
+    console.log("Mongoose Error: ", error)
 });
 db.once("open", function() {
     console.log("Mongoose connection successful.")

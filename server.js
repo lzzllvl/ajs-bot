@@ -7,8 +7,8 @@ const express = require('express'),
 
 
 mongoose.Promise = Promise
-mongoose.connect(DB_HOST);
-var db = mongoose.connection;
+mongoose.connect(DB_HOST)
+var db = mongoose.connection
 db.on("error", function(error) {
       console.log("Mongoose Error: ", error);
 })
