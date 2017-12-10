@@ -7,7 +7,7 @@ const keywords = {
 }
 
 module.exports = (messageBody) => {
-    let found = keywords.filter((val) => {
+    let found = Object.keys(keywords).filter((val) => {
         return messageBody.includes(Regex(val, 'i'))
     })
     return found.length ? keywords[found[0]] : null;
