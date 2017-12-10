@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha",
+    "test": "echo 'TODO - tests'",
     "joke-cli": "node scripts/joke-cli.js",
     "send-subs": "node scripts/send-subs.js",
     "conf": "node scripts/kik-conf.js",
