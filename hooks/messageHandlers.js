@@ -5,6 +5,7 @@ const jokes = require('../controllers/joke-controller')
 
 const textReplies = {
     joke: (message) => {
+        console.log("calling joke")
         users.getNextJoke(message.from)
             .then(result => {
                 console.log("1")
@@ -61,7 +62,6 @@ module.exports = function(message) {
     let replyFunc;
     switch(message.type) {
         case "text": 
-
             replyFunc = textReplies[message.body] || textReplies.noResponse
             
             break;    

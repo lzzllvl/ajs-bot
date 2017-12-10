@@ -39,7 +39,9 @@ module.exports = {
         })
     },
     getNextJoke: (username) => {
+        console.log("right function called")
         return new Promise((resolve, reject) => {
+            console.log("in promise", username)
             User.findOne({
                 username: username
             }).then((data) => {
