@@ -104,7 +104,8 @@ function buildLikedJson(toUser, chatId){
             "chatId": chatId,
             "to": toUser,
             "body": "B)",
-            "type": "text"
+            "type": "text",
+            "delay": 1000
         }]
     }
 }
@@ -114,7 +115,8 @@ function buildDislikedJson(toUser, chatId){
             "chatId": chatId,
             "to": toUser,
             "body": ":S",
-            "type": "text"
+            "type": "text",
+            "delay": 1000
         }]
     }
 }

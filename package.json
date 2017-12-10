@@ -7,7 +7,7 @@
     "start": "node server.js",
     "test": "mocha",
     "joke-cli": "node scripts/joke-cli.js",
-    "sendSubs": "node scripts/sendSubs",
+    "send-subs": "node scripts/send-subs.js",
     "conf": "node scripts/kik-conf.js"
   },
   "author": "Gregory Lee",
