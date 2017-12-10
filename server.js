@@ -4,11 +4,11 @@ const express = require('express'),
       mongoose = require('mongoose'),
       PORT = process.env.PORT || 4433,      
       DB_HOST = process.env.MONGODB_URI || "mongodb://localhost/chat-bot"
-      Promise = require('bluebird')
 
 
 mongoose.Promise = Promise
-const db = mongoose.createConnection(DB_HOST, { useMongoClient: true})
+const db = mongoose.connect(dbhost);
+var db = mongoose.connection;
       db.on("error", function(error) {
             console.log("Mongoose Error: ", error);
       })
