@@ -18,19 +18,20 @@ function buildFirstJson(toUser, chatId){
                 "chatId": chatId,
                 "to": toUser,
                 "body": "Hi there, " + toUser + "." ,
-                "type": "text"
+                "type": "text",
+                "delay": 800
             }, {
                 "chatId": chatId,
                 "to": toUser,
                 "body": "I'm Amazon Joke Services, but you can call me AJ. Or whatever you want, I won't know the difference, because I'm a Bot. Basically, I tell jokes. That's about it.",
                 "type": "text",
-                "delay": 1000
+                "delay": 3000
             }, {
                 "chatId": chatId,
                 "to": toUser,
                 "body": "You can text me 'joke' and I'll try to find you a fresh laugh. You can also 'subscribe' for daily texts if you can't be bothered to type out 'joke'.\nYou can also like or dislike my jokes. But remember, I'm a Bot - Don't do catching feelings",
                 "type": "text",
-                "delay": 6000
+                "delay": 7000
             }
         ]
     }

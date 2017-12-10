@@ -38,11 +38,6 @@
             }
         }, {
             "body": {
-                "setup": "What does an average developer have in common with Dwayne 'The Rock' Johnson?",
-                "punchline": "Nothing. Literally not a single thing."
-            }
-        }, {
-            "body": {
                 "setup": "How do you calculate the volume of a quantum computation?",
                 "punchline": "You qubit!"
             }

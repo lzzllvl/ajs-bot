@@ -4,7 +4,7 @@
   "description": "Kik Joker Bot",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --use-strict server.js ",
     "test": "echo 'TODO - tests'",
     "joke-cli": "node scripts/joke-cli.js",
     "send-subs": "node scripts/send-subs.js",
