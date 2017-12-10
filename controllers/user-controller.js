@@ -50,6 +50,7 @@ module.exports = {
                     }
                 })
             .then((data) => {
+                console.log("data:", data)
                 if(data.jokesToday >= 3) { //4 jokes a day
                     resolve({ noJokeMessage: true })
                 } else {
@@ -58,7 +59,7 @@ module.exports = {
                             $nin: data.jokesSeen
                         }
                     })
-                    .then(record => resolve(record))
+                    .then(record =>{ console.log("record:", record); resolve(record)})
                     .catch(err => console.log(err))
                 }
             }) 
