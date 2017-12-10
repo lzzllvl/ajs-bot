@@ -9,7 +9,6 @@ module.exports = {
         })
     },
     setCurrentJoke: (username, jokeId) => {
-        //both of these need to happen before we can move on
         return  User.findOneAndUpdate({
                     username: username
                 }, {
@@ -50,8 +49,8 @@ module.exports = {
                     }
                 })
             .then((data) => {
-                if(data.jokesToday >= 3) { //4 jokes a day
-                    resolve({ noJokeMessage: true })
+                if(data.jokesToday > 4) { 
+                    resolve({ noJokeMessage: true }) 
                 } else {
                     Joke.findOne({
                         _id: {

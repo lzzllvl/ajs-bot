@@ -18,15 +18,15 @@ db.once("open", function() {
 User.find({
     isSubscribed: true
 }).then((data) => {
-    console.log(data)
     Promise.all(
         data.map(val => {
-            console.log("are your there god?")
             return users.getNextJoke(val.username)
                 .then(joke => {
-                    console.log("joke:", joke)
                     if(!joke.noJokeMessage) {
-                        sendMessage(genJoke(val, joke))
+                        users.setCurrentJoke(val.username, joke._id).catch(err => console.log(err)) //to push the daily joke onto users' seen jokes
+
+
+                        sendMessage(genJokeRequest(val, joke))
                             .catch(err => console.log(err))
                     } else {
                         console.log(`The joke limit is exceeded for user:\n\t ${val.username}`)
@@ -38,11 +38,11 @@ User.find({
     .then(result => db.close())
     .catch(err => {
         db.close()
-        console.error("error:", err)
+        console.log("error:", err)
     })
 })
 
-function genJoke(user, jokeRecord) {
+function genJokeRequest(user, jokeRecord) {
 
     return {
         url: "https://api.kik.com/v1/message",
