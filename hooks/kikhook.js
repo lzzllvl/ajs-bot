@@ -1,4 +1,4 @@
-let handlers = require('./messageHandlers.js')
+let handlers = require('./utils/messageHandlers.js')
 
 module.exports = (hookRouter) => {
     hookRouter.get('/', (req, res) => {
