@@ -24,13 +24,11 @@ User.find({
     data.forEach(val => {
         users.getNextJoke(val.username)
             .then(joke => {
-                sendMessage(genJoke(val, joke))
+                sendMessage(genJoke(val, joke)).then(result => db.close())
                 .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
     })
-}).then(result => {
-    db.close()
 }).catch(err => {
     db.close()
     console.error(err)
