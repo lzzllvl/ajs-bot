@@ -7,16 +7,13 @@ module.exports = {
             .then(result => {
                 if(result.noJokeMessage){
                     replies.sendJokeLimit(message)
-                } else {
-                    console.log("got the joke: ")
+                } else {                
                 users.setCurrentJoke(message.from, result._id)
                     .then(jokeRecord => {
                         replies.sendSetup(message, result)
                         .then(body => {
-                            console.log("lovat me ", message.from, result)
                             users.getCurrentPunchline(message.from)
                             .then((jokeRecord) => {
-                                console.log("jokerecord", jokeRecord)
                                 replies.sendPunchline(message, jokeRecord)                      
                             }).catch(err => console.log(err))
                         }).catch(err => console.log(err))

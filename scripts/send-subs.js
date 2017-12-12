@@ -25,7 +25,10 @@ User.find({
                     if(!joke.noJokeMessage) {
                         users.setCurrentJoke(val.username, joke._id).catch(err => console.log(err)) //to push the daily joke onto users' seen jokes
                         sendMessage(genJokeRequest(val, joke))
-                            .then(body => db.close())
+                            .then(body => { 
+                                console.log(`Joke sent to subscriber:\n\t ${val.username}`)
+                                db.close()
+                            })
                             .catch(err => console.log(err))
                     } else {
                         console.log(`The joke limit is exceeded for user:\n\t ${val.username}`)
