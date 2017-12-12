@@ -23,13 +23,18 @@ User.find({
             return users.getNextJoke(val.username)
                 .then(joke => {
                     if(!joke.noJokeMessage) {
-                        users.setCurrentJoke(val.username, joke._id).catch(err => console.log(err)) //to push the daily joke onto users' seen jokes
+                        users.setCurrentJoke(val.username, joke._id)
+                            .then(punchline => {
+                                users.getCurrentPunchline(val.username) //to push the daily joke onto users' seen jokes
+                                    .catch(err => console.log(`Error pushing joke to seenJokes:\n\t${err}`))
+                            })
+                            .catch(err => console.log(`Error setting current joke:\n\t${err}`)) 
                         sendMessage(genJokeRequest(val, joke))
                             .then(body => { 
                                 console.log(`Joke sent to subscriber:\n\t ${val.username}`)
                                 db.close()
                             })
-                            .catch(err => console.log(err))
+                            .catch(err => console.log(`Error sending joke to subscriber:\n\t${err}`))
                     } else {
                         console.log(`The joke limit is exceeded for user:\n\t ${val.username}`)
                         db.close()
@@ -39,7 +44,7 @@ User.find({
     )
     .catch(err => {
         db.close()
-        console.log("error:", err)
+        console.log("Error in resolving promise from sending subscriptions:", err)
     })
 })
 

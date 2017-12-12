@@ -15,11 +15,11 @@ module.exports = {
                             users.getCurrentPunchline(message.from)
                             .then((jokeRecord) => {
                                 replies.sendPunchline(message, jokeRecord)                      
-                            }).catch(err => console.log(err))
-                        }).catch(err => console.log(err))
-                    }).catch(err => console.log(err))
+                            }).catch(err => console.log(`Error retrieving punchline:\n\t${err}`))
+                        }).catch(err => console.log(`Error sending joke setup:\n\t${err}`))
+                    }).catch(err => console.log(`Error setting current joke:\n\t${err}`))
                 }
-            }).catch(err => console.log(err))
+            }).catch(err => console.log(`Error retreiving next joke:\n\t${err}`))
         
     }, 
     subscribe: (message) => {
