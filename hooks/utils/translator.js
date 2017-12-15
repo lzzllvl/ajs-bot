@@ -7,7 +7,7 @@ const keywords = {
 }
 
 module.exports = (messageBody) => {
-    let found = Object.keys(keywords).filter((val) => {S
+    let found = Object.keys(keywords).filter((val) => {
         return messageBody.match(RegExp(`\\b${val}\\b`, 'i'))
     })
     return found.length ? keywords[found[0]] : null;
